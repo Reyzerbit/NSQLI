@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/tools.jackson.core/jackson-core/3.2.4/25beaee139ae32025c5f189e4fb39c5b1f78653/jackson-core-3.2.4.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/tools.jackson.core/jackson-databind/3.2.4/73cd5c393378036c5b556355e5257128796b9a9a/jackson-databind-3.2.4.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.22/15c67f9498d6934cff9510fc70c5a12e52290457/jackson-annotations-2.22.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.46/a5cfe99fdf320e84955ef653f2ce1bf789d11385/lombok-1.18.46.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/info.picocli/picocli-codegen/4.7.7/f348113b55dd42964785265d5b858fe90e9ef8ac/picocli-codegen-4.7.7.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/info.picocli/picocli/4.7.7/82bcae3dc45ddeb08b4954e2f596772a42219715/picocli-4.7.7.jar" />
+        </processorPath>
+        <module name="SuiteQL-CLI.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="25" />
+  </component>
+</project>

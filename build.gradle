@@ -1,0 +1,69 @@
+plugins {
+    id 'application'
+    id 'org.graalvm.buildtools.native' version '0.11.5'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor 'tools.jackson.core:jackson-databind:3.2.4'
+    annotationProcessor 'com.fasterxml.jackson.core:jackson-annotations:2.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.46'
+    annotationProcessor 'info.picocli:picocli-codegen:4.7.7'
+
+    implementation 'tools.jackson.core:jackson-databind:3.2.4'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.22'
+    implementation 'org.projectlombok:lombok:1.18.46'
+    implementation 'org.apache.commons:commons-lang3:3.20.0'
+    implementation 'info.picocli:picocli:4.7.7'
+    implementation 'com.github.javakeyring:java-keyring:1.0.4'
+    runtimeOnly 'org.slf4j:slf4j-nop:2.0.17'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+application {
+    mainClass = 'com.reyzerbit.suiteqlcli.SuiteQLCLI'
+    applicationName = 'nsqli'
+}
+
+// Runnable fat jar: java -jar build/libs/nsqli.jar
+tasks.named('jar')
+{
+    archiveFileName = 'nsqli.jar'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest
+    {
+        attributes 'Main-Class': 'com.reyzerbit.suiteqlcli.SuiteQLCLI', 'Enable-Native-Access': 'ALL-UNNAMED'
+    }
+    from
+    {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    exclude 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+}
+
+// Requires a GraalVM JDK 25 (native-image) plus MSVC Build Tools on Windows.
+graalvmNative
+{
+    binaries
+    {
+        main
+        {
+            imageName = 'nsqli'
+            mainClass = 'com.reyzerbit.suiteqlcli.SuiteQLCLI'
+            buildArgs.add('--enable-native-access=ALL-UNNAMED')
+            buildArgs.add('-H:+AddAllCharsets')
+        }
+    }
+    metadataRepository
+    {
+        enabled = true
+    }
+}
